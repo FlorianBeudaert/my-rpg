@@ -1,0 +1,23 @@
+<div class="adventure-index">
+  <h1>Adventure</h1>
+  <% if @user.quest_in_progress != 0 %>
+    <p>Quest in progress: <strong><%= @quest_in_progress.name %></strong></p>
+    <p class="distance">Distance : 100</p>
+    <button class="walk">Walk</button>
+  <% else %>
+    <p>No quest in progress</p>
+  <% end %>
+</div>
+
+<script>
+  distance = 100
+  document.querySelector('.walk').addEventListener('click', function() {
+    distance -= Math.floor(Math.random() * 25) + 1
+    if (distance <= 0) {
+      document.querySelector('.distance').textContent = 'Distance: 0'
+      window.location.href = '/adventure/step'
+    } else {
+      document.querySelector('.distance').textContent = 'Distance: ' + distance
+    }
+  })
+</script>

@@ -1,0 +1,27 @@
+<h1 class="fight">Fight</h1>
+<div class="combat-info">
+  <div class="npc-info">
+    <h2>NPC</h2>
+    <img src="https://images-2.rakuten.tv/storage/snapshot/shot/b1e4d975-3836-41df-9f4e-04c862be0596-snapshot-1590666404-width936-quality90.jpeg" alt="NPC" height="300">
+    <p>❤️ Life : <%= session[:npclife] %></p>
+  </div>
+  <div class="user-info">
+    <h2>You</h2>
+    <img src="https://www.maisondelapresse.com/media/wysiwyg/Jeux-jouets/stitch1.jpg" alt="User" height="300">
+    <p>❤️ Life : <%= session[:userlife] %></p>
+  </div>
+</div>
+<div class="combat-actions">
+  <% if session[:turn] == "user" %>
+    <%= button_to "Attack NPC", adventure_attack_path, method: :post, class: "attack-button" %>
+  <% end %>
+</div>
+
+
+<script>
+  <% if session[:turn] == "npc" %>
+    setTimeout(function(){
+      window.location.href = "<%= adventure_npc_attack_path %>";
+    }, 1500);
+  <% end %>
+</script>

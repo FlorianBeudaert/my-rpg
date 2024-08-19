@@ -1,0 +1,60 @@
+<h1><%= @quest.name %></h1>
+
+<h2>Steps</h2>
+
+<table class="quest">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Fake Answer 1</th>
+      <th>Fake Answer 2</th>
+      <th>Fake Answer 3</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quest.steps.order(:step_order).each do |step| %>
+      <tr>
+        <td><%= step.question %></td>
+        <td><%= step.answer %></td>
+        <td><%= step.fake_answer_1 %></td>
+        <td><%= step.fake_answer_2 %></td>
+        <td><%= step.fake_answer_3 %></td>
+        <td class="actions">
+          <%= button_to 'Delete', delete_step_path(step), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Create a new step</h2>
+
+<%= form_with model: Step.new, local: true, html: { class: "form" } do |form| %>
+  <p>
+    <%= form.label :question %><br>
+    <%= form.text_field :question %>
+  </p>
+  <p>
+    <%= form.label :answer %><br>
+    <%= form.text_field :answer %>
+  </p>
+  <p>
+    <%= form.label :fake_answer_1, 'Fake Answer 1' %><br>
+    <%= form.text_field :fake_answer_1 %>
+  </p>
+  <p>
+    <%= form.label :fake_answer_2, 'Fake Answer 2' %><br>
+    <%= form.text_field :fake_answer_2 %>
+  </p>
+  <p>
+    <%= form.label :fake_answer_3, 'Fake Answer 3' %><br>
+    <%= form.text_field :fake_answer_3 %>
+  </p>
+  <p>
+    <%= form.hidden_field :quest_id, value: @quest.id %>
+  </p>
+
+  <%= form.submit "Create Step" %>
+<% end %>

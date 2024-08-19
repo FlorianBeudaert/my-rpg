@@ -1,0 +1,28 @@
+
+<h1>Choice Quests</h1>
+<h2>Quests List</h2>
+<table class="quest">
+  <thead>
+  <tr>
+    <th class="quest">Name</th>
+    <th class="quest">Choose</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @quests.each do |quest| %>
+    <tr class="quest">
+      <td><%= quest.name %></td>
+      <td>
+        <% current_user = User.find(session[:user_id]) %>
+        <% if current_user.quest_in_progress == quest.id %>
+          <%= button_to 'Cancel', cancel_quest_path(quest), method: :post, class: 'cancel-button' %>
+        <% elsif current_user.completed_quests.include?(quest) %>
+          <%= button_to 'Completed', '#', disabled: true, class: 'completed-button' %>
+        <% else %>
+          <%= button_to 'Choose', choose_quest_path(quest), method: :post %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

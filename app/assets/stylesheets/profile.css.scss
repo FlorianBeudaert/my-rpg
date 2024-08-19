@@ -1,0 +1,87 @@
+body {
+  background-color: #f0f0f0;
+}
+
+.profile-section {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.skills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skills button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skills button:hover {
+  background-color: #555;
+}
+
+.level-xp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  width: 50%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+.progress {
+  height: 20px;
+  border-radius: 5px;
+  background: #83da4e;
+}
+
+.equipped-items {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inventory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.inventory h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.inventory button {
+  border: 3px solid #777;
+  transition: transform 0.1s ease;
+}
+
+.inventory button:hover {
+  transform: scale(1.1);
+}
+
+.inventory img {
+  width: 75px;
+  height: 75px;
+}
+
+.items-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}

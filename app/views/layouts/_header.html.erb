@@ -1,0 +1,14 @@
+<header>
+  <% if current_user %>
+    <% if current_user.is_admin %>
+      <%= link_to 'Admin Quests', admin_quests_path %>
+    <% end %>
+    <%= link_to 'Adventure', adventure_path %>
+    <%= link_to 'Quests', quests_path %>
+    <%= link_to 'Profile', profile_path %>
+    <%= link_to 'Logout', logout_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Login', login_path %>
+    <%= link_to 'Signup', signup_path %>
+  <% end %>
+</header>

@@ -1,0 +1,93 @@
+<div class="profile-section">
+  <p>Name : <strong><%= @user.name %></strong></p>
+  <p>Email : <strong><%= @user.email %></strong></p>
+</div>
+
+<div class="profile-section level-xp">
+  <div>
+    <p>👑 Level : <strong><%= @user.level %></strong> </p>
+  </div>
+  <div class="progress-bar">
+    <div class="progress" style="width: <%= [@user.experiences / 100.0 * 100, 100].min %>%;"></div>
+  </div>
+</div>
+
+<div class="profile-section">
+  <p>🪙 Total Skill Points Used : <strong><%= @user.used_points %></strong> </p>
+  <p>🪙 Skill Points : <strong><%= @user.points %></strong></p>
+</div>
+
+<div class="profile-section skills">
+  <p>❤️ Life : <strong><%= @user.life %>
+    <% if @bonuses[:life] > 0 %>
+      (+ <%= @bonuses[:life] %>)
+    <% end %>
+    </strong>
+    <% if @user.points >= 1 %>
+      <%= button_to '+1', add_life_path(points: 1), method: :post %>
+    <% end %>
+    <% if @user.points >= 3 %>
+      <%= button_to '+3', add_life_path(points: 3), method: :post %>
+    <% end %>
+    <% if @user.points >= 10 %>
+      <%= button_to '+10', add_life_path(points: 10), method: :post %>
+    <% end %>
+  </p>
+</div>
+
+<div class="profile-section skills">
+  <p>💪 Strength : <strong><%= @user.strength %>
+    <% if @bonuses[:strength] > 0 %>
+      (+ <%= @bonuses[:strength] %>)
+    <% end %>
+    </strong>
+
+    <% if @user.points >= 1 %>
+      <%= button_to '+1', add_strength_path(points: 1), method: :post %>
+    <% end %>
+    <% if @user.points >= 3 %>
+      <%= button_to '+3', add_strength_path(points: 3), method: :post %>
+    <% end %>
+    <% if @user.points >= 10 %>
+      <%= button_to '+10', add_strength_path(points: 10), method: :post %>
+    <% end %>
+  </p>
+</div>
+
+<div class="profile-section inventory">
+  <h2>Bonus</h2>
+  <p>🎲 XP Bonus : <strong>x<%= @bonuses[:xp] %></strong></p>
+  <p>❤️ Life Bonus : <strong><%= @bonuses[:life] %></strong></p>
+  <p>💪 Strength Bonus : <strong><%= @bonuses[:strength] %></strong></p>
+  <h2>Equipped</h2>
+  <div class="equipped-items">
+    <% @user.inventory.each do |key, item| %>
+      <% if item["equipped"].to_s == "true" %>
+        <% title = "Strength: #{item['strength']}, Life: #{item['life']}, XP Bonus: #{item['xp_bonus']}" %>
+        <% if item["type"] == "Helmet" %>
+          <%= button_to image_tag("https://us.123rf.com/450wm/jemastock/jemastock1705/jemastock170504960/77829648-couleur-image-dessin-anim%C3%A9-bleu-sport-casquette-chapeaux-vector-illustration.jpg?ver=6", title: title), unequip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% elsif item["type"] == "Sword" %>
+          <%= button_to image_tag("https://static.vecteezy.com/ti/vecteur-libre/p3/2392505-dessin-anime-illustrationle-de-cigarette-et-sa-fumee-gratuit-vectoriel.jpg", title: title), unequip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% elsif item["type"] == "Shield" %>
+          <%= button_to image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtmHBTIgN1OwMAWrMuOmv6plauxlZqbLB2Q&s", title: title), unequip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2>Inventory</h2>
+  <div class="items-list">
+    <% @user.inventory.sort_by { |key, item| item["type"] }.each do |key, item| %>
+      <% if item["equipped"].to_s == "false" %>
+        <% title = "Strength: #{item['strength']}, Life: #{item['life']}, XP Bonus: #{item['xp_bonus']}" %>
+        <% if item["type"] == "Helmet" %>
+          <%= button_to image_tag("https://us.123rf.com/450wm/jemastock/jemastock1705/jemastock170504960/77829648-couleur-image-dessin-anim%C3%A9-bleu-sport-casquette-chapeaux-vector-illustration.jpg?ver=6", title: title), equip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% elsif item["type"] == "Sword" %>
+          <%= button_to image_tag("https://static.vecteezy.com/ti/vecteur-libre/p3/2392505-dessin-anime-illustrationle-de-cigarette-et-sa-fumee-gratuit-vectoriel.jpg", title: title), equip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% elsif item["type"] == "Shield" %>
+          <%= button_to image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtmHBTIgN1OwMAWrMuOmv6plauxlZqbLB2Q&s", title: title), equip_item_path(item_id: key), method: :post, class: "inventory button" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

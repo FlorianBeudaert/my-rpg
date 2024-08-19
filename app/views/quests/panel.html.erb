@@ -1,0 +1,43 @@
+<h1>Admin Quests</h1>
+<h2>Quests List</h2>
+
+<table class="quest">
+  <thead>
+  <tr>
+    <th class="quest">Name</th>
+    <th class="quest">Experience</th>
+    <th class="quest">Number of Steps</th>
+    <th class="quest">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @quests.each do |quest| %>
+    <tr class="quest">
+      <td><%= quest.name %></td>
+      <td><%= quest.experience %></td>
+      <td>
+        <%= quest.steps.count %>
+      </td>
+      <td class="actions">
+        <%= button_to 'Show', admin_quest_path(quest), method: :get %>
+        <%= button_to 'Delete', delete_quest_path(quest), method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Create a new quest</h2>
+
+<%= form_with model: @quest, url: quests_path, local: true, html: { class: "form" } do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :experience %><br>
+    <%= form.number_field :experience, min: 0 %>
+  </p>
+
+  <%= form.submit "Create Quest" %>
+<% end %>

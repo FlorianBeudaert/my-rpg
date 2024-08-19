@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  life_bonus: 1
+  strength_bonus: 1
+  experience_bonus: 1
+
+two:
+  name: MyString
+  life_bonus: 1
+  strength_bonus: 1
+  experience_bonus: 1

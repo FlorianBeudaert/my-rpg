@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rpg</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+
+  <%= render 'layouts/header' %>
+
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %> flash-message">
+      <p class="flash-message-text"><%= message %></p>
+      <button type="button" class="close-flash">x</button>
+    </div>
+  <% end %>
+
+  <%= yield %>
+  </body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var closeButtons = document.querySelectorAll('.close-flash');
+
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                this.parentElement.style.display = 'none';
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var flashMessages = document.querySelectorAll('.flash-message');
+
+        flashMessages.forEach(function(message) {
+            setTimeout(function() {
+                message.style.display = 'none';
+            }, 3000);
+        });
+    });
+</script>

@@ -1,0 +1,103 @@
+.quest table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quest table, th, td {
+  border: 1px solid #ddd;
+}
+
+.quest th, td {
+  padding: 20px;
+  text-align: left;
+}
+
+.quest th {
+  background-color: #333;
+  color: white;
+}
+
+.quest tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.quest button,
+.adventure-quest button,
+.adventure-index button {
+  background-color: #333;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+.quest button:hover,
+.adventure-quest button:hover,
+.adventure-index button:hover {
+  opacity: 0.8;
+}
+
+.quest .completed-button {
+  background-color: green;
+  color: white;
+}
+
+.quest .cancel-button {
+  background-color: #cc3333;
+}
+
+.quest .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.adventure-quest, .fight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.adventure-quest .question-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.adventure-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.combat-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.npc-info, .user-info {
+  text-align: center;
+}
+
+.combat-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.attack-button {
+  background-color: #bd4646;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+.attack-button:hover {
+  opacity: 0.8;
+}

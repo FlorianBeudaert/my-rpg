@@ -1,0 +1,17 @@
+<% if @current_step %>
+  <div class="adventure-quest">
+    <h1><%= @current_step.question %></h1>
+    <div class="question-container">
+      <%
+        answers = [@current_step.answer, @current_step.fake_answer_1, @current_step.fake_answer_2, @current_step.fake_answer_3].shuffle
+        answers.each do |answer|
+      %>
+        <%= button_to answer, adventure_answer_path(step_id: @current_step.id, answer: answer), method: :post %>
+      <% end %>
+    </div>
+    <p>Or</p>
+    <%= button_to 'Fight', adventure_fight_path, method: :get %>
+  </div>
+<% else %>
+  <p>No quest in progress</p>
+<% end %>

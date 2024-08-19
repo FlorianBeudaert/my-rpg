@@ -1,0 +1,18 @@
+<h1>Congratulations, <%= @user.name %>!</h1>
+<p>You have completed the quest!</p>
+
+<h2>Choose one of the following items to add to your inventory:</h2>
+<div class="items-list">
+  <% @random_items.each do |item| %>
+    <div>
+      <% title = "Strength: #{item[:strength]}, Life: #{item[:life]}, XP Bonus: #{item[:xp_bonus]}" %>
+      <% if item[:type] == "Helmet" %>
+        <%= button_to image_tag("https://us.123rf.com/450wm/jemastock/jemastock1705/jemastock170504960/77829648-couleur-image-dessin-anim%C3%A9-bleu-sport-casquette-chapeaux-vector-illustration.jpg?ver=6", title: title), add_item_path(item: item), method: :post, class: "inventory button" %>
+      <% elsif item[:type] == "Sword" %>
+        <%= button_to image_tag("https://static.vecteezy.com/ti/vecteur-libre/p3/2392505-dessin-anime-illustrationle-de-cigarette-et-sa-fumee-gratuit-vectoriel.jpg", title: title), add_item_path(item: item), method: :post, class: "inventory button" %>
+      <% elsif item[:type] == "Shield" %>
+        <%= button_to image_tag("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLtmHBTIgN1OwMAWrMuOmv6plauxlZqbLB2Q&s", title: title), add_item_path(item: item), method: :post, class: "inventory button" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
